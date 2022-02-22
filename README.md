@@ -6,7 +6,7 @@
 ## Estructura de Archivos
 
 * `/docker/` contiene los archivos de configuración de Docker.
-* `/www/` carpeta para los archivos PHP del proyecto.
+* `/intranet/` descar repo intranet.
 * `/db/` carpeta para los archivos dump mysql.
 
 ## Accesos
