@@ -1,7 +1,0 @@
-RewriteEngine On
-RewriteCond %{REQUEST_FILENAME} !-d
-RewriteCond %{REQUEST_FILENAME}.php -f
-RewriteRule ^(.*)$ $1.php
-php_value error_reporting 2
-php_flag display_errors On
-ErrorDocument 404 /error.php

@@ -6,4 +6,6 @@
 docker/mysql
 
 .editorconfig
-.env
+
+#www
+intranet/
