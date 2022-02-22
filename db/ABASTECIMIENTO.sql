@@ -1,0 +1,321 @@
+-- phpMyAdmin SQL Dump
+-- version 4.6.6deb4+deb9u2
+-- https://www.phpmyadmin.net/
+--
+-- Servidor: localhost:3306
+-- Tiempo de generación: 22-02-2022 a las 11:12:25
+-- Versión del servidor: 10.1.48-MariaDB-0+deb9u2
+-- Versión de PHP: 5.6.40-0+deb8u12
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Base de datos: `ABASTECIMIENTO`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ACCESOS`
+--
+
+CREATE TABLE `ACCESOS` (
+  `AC_ID` int(11) NOT NULL,
+  `USU_RUT` varchar(12) NOT NULL,
+  `FOR_ID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ACCESOS`
+--
+
+INSERT INTO `ACCESOS` (`AC_ID`, `USU_RUT`, `FOR_ID`) VALUES
+(1, '17.333.639-K', 1),
+(2, '17.333.639-K', 2),
+(3, '15.738.663-8', 1),
+(4, '15.738.663-8', 2);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `CARGOS`
+--
+
+CREATE TABLE `CARGOS` (
+  `CAR_ID` int(11) NOT NULL,
+  `CAR_DES` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `CARGOS`
+--
+
+INSERT INTO `CARGOS` (`CAR_ID`, `CAR_DES`) VALUES
+(1, 'DIRECTOR DEPTO'),
+(2, 'DIRECTOR DEPTO (S)'),
+(3, 'DIRECTOR'),
+(4, 'DIRECTOR (S)'),
+(7, 'ENCARGADO DE BODEGA'),
+(8, 'ENCARGADO DE SECTOR'),
+(9, 'ENCARGADO DE FINANZAS'),
+(10, 'ENCARGADO DE MANTENCIÓN'),
+(11, 'ENCARGADO DE PROGRAMA'),
+(12, 'ENCARGADO ADQUISICIONES'),
+(13, 'ADQUISICIONES');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `ESTABLECIMIENTO`
+--
+
+CREATE TABLE `ESTABLECIMIENTO` (
+  `EST_ID` int(11) NOT NULL,
+  `EST_NOM` varchar(50) NOT NULL,
+  `EST_ESTA` text NOT NULL,
+  `EST_DIR` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `ESTABLECIMIENTO`
+--
+
+INSERT INTO `ESTABLECIMIENTO` (`EST_ID`, `EST_NOM`, `EST_ESTA`, `EST_DIR`) VALUES
+(1, 'DEPARTAMENTO DE SALUD', 'ACTIVO', 'RENATO CORREA N° 220'),
+(2, 'CESFAM RENGO', 'ACTIVO', 'AVDA. ARTURO PRAT Nº 1850'),
+(3, 'CESFAM ROSARIO', 'ACTIVO', 'SAN IGNACIO N° 145'),
+(4, 'POSTA DE ESMERALDA', 'ACTIVO', 'Esmeralda S/N'),
+(5, 'POSTA DE LO CARTAGENA', 'ACTIVO', ''),
+(6, 'POSTA DE CERRILLOS', 'ACTIVO', ''),
+(7, 'POSTA DE POPETA', 'ACTIVO', ''),
+(8, 'POSTA DE LO DE LOBOS', 'ACTIVO', ''),
+(9, 'SAPU DE ROSARIO', 'ACTIVO', 'SAN IGNACIO N° 145'),
+(10, 'FARMACIA POPULAR', 'ACTIVO', ''),
+(11, 'SAR RIENZI VALENCIA', 'ACTIVO', 'AVDA. ARTURO PRAT Nº 1850'),
+(9999, 'MULTIESTABLECIMIENTO', 'ACTIVO', ''),
+(10000, 'ILUSTRE MUNICIPALIDAD DE RENGO', 'ACTIVO', 'URRIOLA 95'),
+(10001, 'CESFAM ORIENTE', 'ACTIVO', 'AV. QUINTALBA 610');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `FORMULARIO`
+--
+
+CREATE TABLE `FORMULARIO` (
+  `FOR_ID` int(11) NOT NULL,
+  `FOR_NOM` varchar(50) NOT NULL,
+  `FOR_ESTA` varchar(8) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `FORMULARIO`
+--
+
+INSERT INTO `FORMULARIO` (`FOR_ID`, `FOR_NOM`, `FOR_ESTA`) VALUES
+(1, 'MANTENEDOR USUARIOS', 'ACTIVO'),
+(2, 'ACCESOS', 'ACTIVO');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `LOG_ACCION`
+--
+
+CREATE TABLE `LOG_ACCION` (
+  `LA_ID` int(11) NOT NULL,
+  `LA_ACC` varchar(255) NOT NULL,
+  `FOR_ID` int(11) NOT NULL,
+  `USU_RUT` varchar(12) NOT NULL,
+  `LA_IP_USU` varchar(15) NOT NULL,
+  `LA_FEC` date NOT NULL,
+  `LA_HORA` time NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `LOG_ACCION`
+--
+
+INSERT INTO `LOG_ACCION` (`LA_ID`, `LA_ACC`, `FOR_ID`, `USU_RUT`, `LA_IP_USU`, `LA_FEC`, `LA_HORA`) VALUES
+(1, 'INGRESO', 9, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:09:38'),
+(2, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:09:39'),
+(3, 'INGRESO', 9, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:21:08'),
+(4, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:21:08'),
+(5, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:24:41'),
+(6, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:24:43'),
+(7, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:25:49'),
+(8, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:27:07'),
+(9, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:27:34'),
+(10, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-12', '12:45:23'),
+(11, 'USUARIO O CONTRASEÑA INCORRECTA', 9, '15.738.663-8', '192.168.14.191', '2021-01-12', '12:46:59'),
+(12, 'INGRESO', 9, '15.738.663-8', '192.168.14.191', '2021-01-12', '12:47:21'),
+(13, 'INGRESO A INDEX', 0, '15.738.663-8', '192.168.14.191', '2021-01-12', '12:47:21'),
+(14, 'INGRESO', 9, '17.333.639-K', '186.11.44.103', '2021-01-12', '13:12:42'),
+(15, 'INGRESO A INDEX', 0, '17.333.639-K', '186.11.44.103', '2021-01-12', '13:12:43'),
+(16, 'INGRESO', 9, '17.333.639-K', '192.168.14.190', '2021-01-13', '11:51:02'),
+(17, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-13', '11:51:03'),
+(18, 'INGRESO A INDEX', 0, '17.333.639-K', '192.168.14.190', '2021-01-13', '11:51:10'),
+(19, 'INGRESO', 9, '15.738.663-8', '192.168.14.191', '2021-01-25', '11:01:15'),
+(20, 'INGRESO A INDEX', 0, '15.738.663-8', '192.168.14.191', '2021-01-25', '11:01:15'),
+(21, 'INGRESO A INDEX', 0, '15.738.663-8', '192.168.14.191', '2021-01-25', '11:04:50'),
+(22, 'INGRESO A INDEX', 0, '15.738.663-8', '192.168.14.191', '2021-01-25', '11:04:52'),
+(23, 'INGRESO A INDEX', 0, '14.569.454-K', '192.168.14.191', '2021-01-25', '11:54:49'),
+(24, 'INGRESO', 9, '15.738.663-8', '192.168.14.191', '2021-01-26', '11:14:26'),
+(25, 'INGRESO', 9, '15.738.663-8', '192.168.14.191', '2021-01-26', '12:07:04'),
+(26, 'INGRESO', 9, '15.738.663-8', '192.168.14.191', '2021-02-18', '10:59:08'),
+(27, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-08', '15:51:21'),
+(28, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-08', '16:19:10'),
+(29, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-08', '16:19:35'),
+(30, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-09', '08:36:22'),
+(31, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-09', '08:55:06'),
+(32, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-09', '11:07:14'),
+(33, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-09', '12:17:04'),
+(34, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-10', '09:51:32'),
+(35, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-10', '12:07:26'),
+(36, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-10', '15:20:18'),
+(37, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-10', '15:31:00'),
+(38, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-11', '09:07:08'),
+(39, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-11', '11:20:40'),
+(40, 'INGRESO', 9, '15.738.663-8', '192.168.14.190', '2021-03-11', '13:55:45');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `PERFILES`
+--
+
+CREATE TABLE `PERFILES` (
+  `PR_ID` int(11) NOT NULL,
+  `PR_NOM` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `PERFILES`
+--
+
+INSERT INTO `PERFILES` (`PR_ID`, `PR_NOM`) VALUES
+(0, 'SUPER ADMINISTRADOR'),
+(1, 'Administrador'),
+(2, 'Encargado de Bodega'),
+(3, 'Solicitante');
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `USUARIO`
+--
+
+CREATE TABLE `USUARIO` (
+  `USU_RUT` varchar(12) NOT NULL,
+  `USU_NOM` varchar(50) NOT NULL,
+  `USU_APP` varchar(50) NOT NULL,
+  `USU_APM` varchar(50) NOT NULL,
+  `USU_MAIL` varchar(50) NOT NULL,
+  `USU_FONO` varchar(15) NOT NULL,
+  `USU_CAR` varchar(50) NOT NULL,
+  `EST_ID` int(11) NOT NULL,
+  `USU_DEP` text NOT NULL,
+  `USU_ESTA` text NOT NULL,
+  `USU_PAS` varchar(255) NOT NULL,
+  `USU_PERFIL` int(11) NOT NULL,
+  `USU_FIR` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `USUARIO`
+--
+
+INSERT INTO `USUARIO` (`USU_RUT`, `USU_NOM`, `USU_APP`, `USU_APM`, `USU_MAIL`, `USU_FONO`, `USU_CAR`, `EST_ID`, `USU_DEP`, `USU_ESTA`, `USU_PAS`, `USU_PERFIL`, `USU_FIR`) VALUES
+('15.738.663-8', 'ERVALDO ESTEBAN', 'ORTEGA', 'MIRANDA', 'eortega@munirengo.cl', '722511541', '7', 1, '1', 'ACTIVO', '50ed3c641d6c2fa8b2897668ccbcc8d530eff70db6ec1ffbf3e55f9a1e3ad518', 1, ''),
+('17.333.639-K', 'DANILO EDUARDO', 'VIDAL', 'MUÑOZ', 'dvidal@munirengo.cl', '722511541', '', 1, '1', 'ACTIVO', '046ddf96c233a273fd390c3d0b1a9aa4', 0, '');
+
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `ACCESOS`
+--
+ALTER TABLE `ACCESOS`
+  ADD PRIMARY KEY (`AC_ID`);
+
+--
+-- Indices de la tabla `CARGOS`
+--
+ALTER TABLE `CARGOS`
+  ADD PRIMARY KEY (`CAR_ID`);
+
+--
+-- Indices de la tabla `ESTABLECIMIENTO`
+--
+ALTER TABLE `ESTABLECIMIENTO`
+  ADD PRIMARY KEY (`EST_ID`);
+
+--
+-- Indices de la tabla `FORMULARIO`
+--
+ALTER TABLE `FORMULARIO`
+  ADD PRIMARY KEY (`FOR_ID`);
+
+--
+-- Indices de la tabla `LOG_ACCION`
+--
+ALTER TABLE `LOG_ACCION`
+  ADD PRIMARY KEY (`LA_ID`);
+
+--
+-- Indices de la tabla `PERFILES`
+--
+ALTER TABLE `PERFILES`
+  ADD PRIMARY KEY (`PR_ID`);
+
+--
+-- Indices de la tabla `USUARIO`
+--
+ALTER TABLE `USUARIO`
+  ADD UNIQUE KEY `USU_RUT` (`USU_RUT`);
+
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `ACCESOS`
+--
+ALTER TABLE `ACCESOS`
+  MODIFY `AC_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT de la tabla `CARGOS`
+--
+ALTER TABLE `CARGOS`
+  MODIFY `CAR_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+--
+-- AUTO_INCREMENT de la tabla `ESTABLECIMIENTO`
+--
+ALTER TABLE `ESTABLECIMIENTO`
+  MODIFY `EST_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10002;
+--
+-- AUTO_INCREMENT de la tabla `FORMULARIO`
+--
+ALTER TABLE `FORMULARIO`
+  MODIFY `FOR_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT de la tabla `LOG_ACCION`
+--
+ALTER TABLE `LOG_ACCION`
+  MODIFY `LA_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+--
+-- AUTO_INCREMENT de la tabla `PERFILES`
+--
+ALTER TABLE `PERFILES`
+  MODIFY `PR_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -1,0 +1,33 @@
+version: '3'
+networks:
+  intranet_net:
+    name: intranet_net
+    ipam:
+      config:
+        - subnet: 172.10.10.0/24
+services:
+  mysql:
+    image: danilovidalm/base-mysql:0.0.1
+    container_name: mysql
+    restart: always
+    ports:
+      - "3306:3306"
+    networks:
+      intranet_net:
+        ipv4_address: 172.10.10.2
+
+  php:
+    build:
+      context: ./docker/php
+      args:
+        php_version: ${PHP_VERSION}
+    container_name: ${COMPOSE_PROJECT_NAME}-php
+    ports:
+      - "${PHP_PORT}:80"
+    volumes:
+      - ./www:/var/www/html
+    networks:
+      intranet_net:
+        ipv4_address: 172.10.10.3
+    links:
+      - mysql
