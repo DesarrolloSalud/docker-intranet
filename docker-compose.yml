@@ -12,6 +12,8 @@ services:
     restart: always
     ports:
       - "3306:3306"
+    volumes:
+      - ./db/mysql_data:/var/lib/mysql
     networks:
       intranet_net:
         ipv4_address: 172.10.10.2

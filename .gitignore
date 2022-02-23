@@ -9,3 +9,6 @@ docker/mysql
 
 #www
 intranet/
+
+#db persistente
+db/mysql_data
